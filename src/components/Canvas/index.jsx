@@ -6,7 +6,7 @@ const Canvas = () => {
     const canvas_ref = useRef()
 
     useEffect(() =>{
-        const game = new Game(canvas_ref.current);
+        new Game(canvas_ref.current);
     })
     
     return (
