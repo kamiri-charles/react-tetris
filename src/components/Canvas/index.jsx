@@ -7,7 +7,6 @@ const Canvas = () => {
 
     useEffect(() =>{
         const game = new Game(canvas_ref.current);
-        console.log(game);
     })
     
     return (
