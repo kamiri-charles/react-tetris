@@ -1,16 +1,19 @@
-import { useEffect, useRef } from 'react';
-import Game from '../../modules/Game.ts';
-import './styles.scss';
+import { useEffect, useRef } from 'react'
+import Game from '../modules/Game';
+import './styles.scss'
 
 const Canvas = () => {
     const canvas_ref = useRef()
 
-    useEffect(() =>{
-        new Game(canvas_ref.current);
+    useEffect(() => {
+        new Game(canvas_ref.current)
     })
     
     return (
-        <canvas ref={canvas_ref}></canvas>
+        <>
+            <h1>Tetris</h1>
+            <canvas ref={canvas_ref}></canvas>
+        </>
     )
 };
 
