@@ -9,9 +9,10 @@ export const tetrominoes = [
             '******'
         ]
     },
-    // Test
+
+    // Reverse L-block
     {
-        name: "square",
+        name: "reverse-L",
         view: [
             '******',
             '*xxx**',
@@ -19,4 +20,59 @@ export const tetrominoes = [
             '******'
         ]
     },
+
+    // L-block
+    {
+        name: "L",
+        view: [
+            '******',
+            '**xxx*',
+            '**x***',
+            '******'
+        ]
+    },
+
+    // Line
+    {
+        name: "line",
+        view: [
+            '******',
+            '******',
+            'xxxx**',
+            '******'
+        ]
+    },
+
+    // T-block
+    {
+        name: "T",
+        view: [
+            '******',
+            '**xxx*',
+            '***x**',
+            '******'
+        ]
+    },
+
+    // Z-block
+    {
+        name: "Z",
+        view: [
+            '******',
+            '**xx**',
+            '*xx***',
+            '******'
+        ]
+    },
+
+    // Reverse Z-block
+    {
+        name: "reverse-Z",
+        view: [
+            '******',
+            '*xx***',
+            '**xx**',
+            '******'
+        ]
+    }
 ]
