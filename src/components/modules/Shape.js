@@ -14,7 +14,7 @@ export default class Shape {
         window.addEventListener('keydown', e => {
 
             // Rotate
-            if (e.key === 'ArrowUp') {
+            if (e.key === 'ArrowUp' && !this.reached_bottom_lim) {
                 this.rotate_shape()
             }
             // Left
