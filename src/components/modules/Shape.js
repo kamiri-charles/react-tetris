@@ -66,9 +66,17 @@ export default class Shape {
     rotate_shape() {
         // Find the center of the shape
         let center = {
-            x: this.coors[0].c_x + this.size / 2,
-            y: this.coors[0].c_y + this.size / 2
+            x: 0,
+            y: 0
         }
+
+        this.coors.forEach(c => {
+            center.x += c.c_x
+            center.y += c.c_y
+        })
+
+        center.x /= this.coors.length
+        center.y /= this.coors.length
 
         // Rotate each cell 90deg around the center
         this.coors.forEach(c => {
