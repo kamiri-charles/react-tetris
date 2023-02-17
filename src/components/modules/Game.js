@@ -25,10 +25,12 @@ export default class Game {
         
         
         
-        // Shape bottom limit
-        if (this.curr.coors.forEach(c => {
-            if (c.c_y >= this.canvas.height) this.curr.reached_bottom_lim = true 
-        }))
+        // Check if the shape has reached the bottom limit
+        this.curr.coors.forEach(c => {
+            if (c.c_y + this.curr.size >= this.canvas.height) {
+                this.curr.reached_bottom_lim = true
+            }
+        })
         
 
         console.log("Hello")
