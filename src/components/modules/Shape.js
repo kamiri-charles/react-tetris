@@ -12,6 +12,11 @@ export default class Shape {
 
         // Controls
         window.addEventListener('keydown', e => {
+
+            // Rotate
+            if (e.key === 'ArrowUp') {
+                this.rotate_shape()
+            }
             // Left
             if (e.key === 'ArrowLeft') {
                 this.offset_x = -1
@@ -56,6 +61,22 @@ export default class Shape {
                 }
             }
         }
+    }
+
+    rotate_shape() {
+        // Find the center of the shape
+        let center = {
+            x: this.coors[0].c_x + this.size / 2,
+            y: this.coors[0].c_y + this.size / 2
+        }
+
+        // Rotate each cell 90deg around the center
+        this.coors.forEach(c => {
+            let x = c.c_x - center.x
+            let y = c.c_y - center.y
+            c.c_x = -y + center.x
+            c.c_y = x + center.y
+        })
     }
 
     draw(context) {

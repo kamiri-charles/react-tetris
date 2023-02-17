@@ -21,15 +21,17 @@ export default class Game {
         this.context.fillStyle = 'rgba(0, 0, 0, 1)'
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height)
         this.curr.animate(this.context)
-
-
-
-
+        
+        
+        
+        
         // Shape bottom limit
         if (this.curr.coors.forEach(c => {
-           if (c.c_y >= this.canvas.height) this.curr.reached_bottom_lim = true 
+            if (c.c_y >= this.canvas.height) this.curr.reached_bottom_lim = true 
         }))
+        
 
+        console.log("Hello")
         requestAnimationFrame(() => this.run())
     }
 }
