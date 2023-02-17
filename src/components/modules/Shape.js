@@ -19,12 +19,12 @@ export default class Shape {
             }
             // Left
             if (e.key === 'ArrowLeft') {
-                this.offset_x = -1
+                this.offset_x = -this.size
             }
 
             // Right
             else if (e.key === 'ArrowRight') {
-                this.offset_x = 1
+                this.offset_x = this.size
             }
             
         })
