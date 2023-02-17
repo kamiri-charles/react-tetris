@@ -4,9 +4,10 @@ export default class Game {
     constructor(canvas) {
         this.canvas = canvas
         this.context = this.canvas.getContext('2d')
-        this.curr = new Shape()
+        this.shapes = []
         
         this.init()
+        this.active_shape = this.shapes[this.shapes.length - 1]
         this.run()
     }
 
@@ -15,25 +16,26 @@ export default class Game {
         this.canvas.height = 600
         this.context.fillStyle = '#000'
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height)
+        this.shapes.push(new Shape())
+
     }
 
     run() {
         this.context.fillStyle = 'rgba(0, 0, 0, 1)'
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height)
-        this.curr.animate(this.context)
+        this.shapes.forEach(shape => shape.animate(this.context))
         
         
-        
-        
-        // Check if the shape has reached the bottom limit
-        this.curr.coors.forEach(c => {
-            if (c.c_y + this.curr.size >= this.canvas.height) {
-                this.curr.reached_bottom_lim = true
+        // Check if the current shape has reached the bottom limit
+        this.active_shape.coors.forEach(c => {
+            if (c.c_y + this.active_shape.size >= this.canvas.height) {
+                this.active_shape.reached_bottom_lim = true
+                this.shapes.push(new Shape())
+                this.active_shape = this.shapes[this.shapes.length - 1]
             }
         })
         
 
-        console.log("Hello")
         requestAnimationFrame(() => this.run())
     }
 }
