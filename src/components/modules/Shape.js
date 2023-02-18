@@ -9,46 +9,49 @@ export default class Shape {
         this.offset_x = 0
         this.coors = [] // Co-ordinates for each cell in a shape
         this.reached_bottom_lim = false
-
+        
         // Controls
         window.addEventListener('keydown', e => {
-
+            
             // Rotate
             if (e.key === 'ArrowUp' && !this.reached_bottom_lim) {
                 this.rotate_shape()
             }
+            
             // Left
-            if (e.key === 'ArrowLeft') {
-                this.offset_x = -this.size
+            if (e.key === 'ArrowLeft' && !this.#on_left_edge()) {
+                this.offset_x = -this.size * 0.5
             }
-
+            
             // Right
-            else if (e.key === 'ArrowRight') {
-                this.offset_x = this.size
+            else if (e.key === 'ArrowRight' && !this.#on_right_edge()) {
+                this.offset_x = this.size * 0.5
             }
             
         })
-
+        
         window.addEventListener('keyup', e => {
             // Left
             if (e.key === 'ArrowLeft') {
                 this.offset_x = 0
             }
-
+            
             // Right
             else if (e.key === 'ArrowRight') {
                 this.offset_x = 0
             }
             
         })
-
+        
         this.destructure_shape()
     }
-
+    
+    
     get_shape() {
         return tetrominoes[Math.floor(Math.random() * tetrominoes.length)]
     }
-
+    
+    
     destructure_shape() {
         let s = this.get_shape()
         for (let i = 0; i < s.view.length; i++) {
@@ -62,22 +65,23 @@ export default class Shape {
             }
         }
     }
-
+    
+    
     rotate_shape() {
         // Find the center of the shape
         let center = {
             x: 0,
             y: 0
         }
-
+        
         this.coors.forEach(c => {
             center.x += c.c_x
             center.y += c.c_y
         })
-
+        
         center.x /= this.coors.length
         center.y /= this.coors.length
-
+        
         // Rotate each cell 90deg around the center
         this.coors.forEach(c => {
             let x = c.c_x - center.x
@@ -86,22 +90,50 @@ export default class Shape {
             c.c_y = x + center.y
         })
     }
-
+    
+    
     draw(context) {
         context.beginPath()
         context.fillStyle = this.color
-
-        this.coors.forEach(c => (
+        context.strokeStyle = '#000'
+        
+        this.coors.forEach(c => {
             context.fillRect(c.c_x, c.c_y, this.size, this.size)
-        ))
+            context.strokeRect(c.c_x, c.c_y, this.size, this.size)
+        })
         context.closePath()
     }
-
+    
     animate(context) {
         this.draw(context)
         if (!this.reached_bottom_lim) {
-            this.coors.forEach(c => c.c_y += 1)
+            this.coors.forEach(c => c.c_y += 3)
             this.coors.forEach(c => c.c_x += this.offset_x)
         }
+        
+        // Horizontal boundaries
+        if (this.#on_left_edge() || this.#on_right_edge()) this.offset_x = 0
+    }
+    
+    #on_left_edge() {
+        let min_x = 9999;
+        
+        this.coors.forEach(c => {
+            if (c.c_x < min_x) min_x = c.c_x
+        })
+        
+        
+        return min_x <= 0;
+    }
+    
+    #on_right_edge() {
+        let max_x = 0;
+        
+        this.coors.forEach(c => {
+            if (c.c_x + this.size > max_x) max_x = c.c_x + this.size
+        })
+        
+        
+        return max_x >= 400;
     }
 }

@@ -25,12 +25,13 @@ export default class Game {
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height)
         this.shapes.forEach(shape => shape.animate(this.context))
         
+
+       
         
         // Check if the current shape has reached the bottom limit
         this.active_shape.coors.forEach(c => {
             if (c.c_y + this.active_shape.size >= this.canvas.height) {
                 this.active_shape.reached_bottom_lim = true
-                this.shapes.push(new Shape())
                 this.active_shape = this.shapes[this.shapes.length - 1]
             }
         })
