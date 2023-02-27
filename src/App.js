@@ -1,5 +1,5 @@
-import Canvas from './components/Canvas';
-import './App.scss';
+import Canvas from './components/Canvas'
+import './App.scss'
 
 function App() {
 	return (
