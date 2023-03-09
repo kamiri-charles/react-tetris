@@ -35,6 +35,7 @@ export default class Game {
         this.active_shape.coors.forEach(c => {
             if (c.c_y + this.active_shape.size >= this.canvas.height) {
                 this.active_shape.reached_bottom_lim = true
+                //this.shapes.push(new Shape())
                 this.active_shape = this.shapes[this.shapes.length - 1]
             }
         })

@@ -2,10 +2,11 @@ import { tetrominoes } from "./tetrominoes"
 
 export default class Shape {
     constructor() {
+        this.tetromino_colors = ['red', 'green', 'blue', 'yellow', 'purple', 'orange']
         this.x = 0
         this.y = 0
         this.size = 20
-        this.color = 'white'
+        this.color = this.tetromino_colors[Math.floor(Math.random() * this.tetromino_colors.length)]
         this.offset_x = 0
         this.coors = [] // Co-ordinates for each cell in a shape
         this.reached_bottom_lim = false
