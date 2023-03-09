@@ -5,7 +5,7 @@ export default class Shape {
         this.x = 0
         this.y = 0
         this.size = 20
-        this.color = 'red'
+        this.color = 'white'
         this.offset_x = 0
         this.coors = [] // Co-ordinates for each cell in a shape
         this.reached_bottom_lim = false

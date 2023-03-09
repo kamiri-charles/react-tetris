@@ -14,14 +14,17 @@ export default class Game {
     init() {
         this.canvas.width = 400
         this.canvas.height = 600
-        this.context.fillStyle = '#000'
-        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height)
         this.shapes.push(new Shape())
 
     }
 
     run() {
-        this.context.fillStyle = 'rgba(0, 0, 0, 1)'
+        // Create gradient background
+        const gradient = this.context.createLinearGradient(0, 0, 0, this.canvas.height)
+        gradient.addColorStop(0, '#8E2DE2')
+        gradient.addColorStop(1, '#4A00E0')
+
+        this.context.fillStyle = gradient
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height)
         this.shapes.forEach(shape => shape.animate(this.context))
         
