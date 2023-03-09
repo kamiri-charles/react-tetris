@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Canvas from './components/Canvas';
-import './App.scss';
+import Canvas from './components/Canvas'
+import './App.scss'
 
 function App() {
 	return (
